@@ -36,14 +36,14 @@ namespace diabloblazor.Server
             provider.Mappings[".mpq"] = "application/octet-stream";
             app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
 
-            app.UseClientSideBlazorFiles<diabloblazor.Startup>();
+            app.UseClientSideBlazorFiles<diabloblazor.Program>();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapFallbackToClientSideBlazor<diabloblazor.Startup>("index.html");
+                endpoints.MapFallbackToClientSideBlazor<diabloblazor.Program>("index.html");
             });
         }
     }
