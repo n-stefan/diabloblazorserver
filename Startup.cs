@@ -22,6 +22,8 @@ namespace diabloblazor.Server
                 app.UseWebAssemblyDebugging();
             }
 
+            app.UseHttpsRedirection();
+
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".mpq"] = "application/octet-stream";
             app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
