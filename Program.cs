@@ -22,4 +22,4 @@ app.UseRouting();
 
 app.UseEndpoints(endpoints => endpoints.MapFallbackToFile("index.html"));
 
-app.Run();
+await app.RunAsync();
