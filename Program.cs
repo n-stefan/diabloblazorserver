@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Serve published (WebAssembly AOT compiled) app
-//builder.WebHost.UseWebRoot(@$"{builder.Environment.WebRootPath}\..\diabloblazor\bin\Release\net6.0\publish\wwwroot");
+//builder.WebHost.UseWebRoot(@$"{builder.Environment.ContentRootPath}\..\diabloblazor\bin\Release\net6.0\publish\wwwroot");
 
 var app = builder.Build();
 
