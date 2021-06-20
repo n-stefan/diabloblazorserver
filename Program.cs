@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Serve published (WebAssembly AOT compiled) app
-//builder.WebHost.UseWebRoot(@$"{builder.Environment.ContentRootPath}\..\diabloblazor\bin\Release\net6.0\publish\wwwroot");
+//builder.WebHost.UseWebRoot(Path.Combine(builder.Environment.ContentRootPath, "..", "diabloblazor", "bin", "Release", "net6.0", "publish", "wwwroot"));
 
 var app = builder.Build();
 
