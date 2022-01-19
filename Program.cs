@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.Hosting;
-using System.IO;
+﻿using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 if (builder.Configuration["ServePublished"] == bool.TrueString)
 {
     var webRoot = Path.Combine(builder.Environment.ContentRootPath, "..", "diabloblazor", "bin", "Release", "net6.0", "publish", "wwwroot");
-    builder.WebHost.UseWebRoot(webRoot);
+    if (Directory.Exists(webRoot))
+    {
+        builder.WebHost.UseWebRoot(webRoot);
+    }
+    else
+    {
+        Console.Error.WriteLine("***** Publish folder not found => NOT serving WebAssembly AOT compiled app.");
+    }
 }
 
 var app = builder.Build();
