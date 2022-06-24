@@ -34,6 +34,6 @@ app.UseBlazorFrameworkFiles();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints => endpoints.MapFallbackToFile("index.html"));
+app.MapFallbackToFile("index.html");
 
 await app.RunAsync();
