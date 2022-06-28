@@ -5,10 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Serve published (WebAssembly AOT compiled) app
 if (builder.Configuration["ServePublished"] == bool.TrueString)
 {
-    var webRoot = Path.Combine(builder.Environment.ContentRootPath, "..", "diabloblazor", "bin", "Release", "net7.0", "publish", "wwwroot");
+    var webRoot = Path.Combine(builder.Environment.ContentRootPath, "bin", "Release", "net7.0", "publish", "wwwroot");
     if (Directory.Exists(webRoot))
     {
-        builder.WebHost.UseWebRoot(webRoot);
+        builder = WebApplication.CreateBuilder(new WebApplicationOptions { WebRootPath = webRoot, EnvironmentName = "Production" });
     }
     else
     {
