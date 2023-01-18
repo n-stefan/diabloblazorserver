@@ -9,10 +9,11 @@ if (builder.Configuration["ServePublished"] == bool.TrueString)
     if (Directory.Exists(webRoot))
     {
         builder = WebApplication.CreateBuilder(new WebApplicationOptions { WebRootPath = webRoot, EnvironmentName = "Production" });
+        Console.WriteLine("***** Publish folder found => serving WebAssembly AOT compiled app.");
     }
     else
     {
-        Console.Error.WriteLine("***** Publish folder not found => NOT serving WebAssembly AOT compiled app.");
+        Console.WriteLine("***** Publish folder not found => not serving WebAssembly AOT compiled app.");
     }
 }
 
