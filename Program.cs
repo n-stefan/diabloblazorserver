@@ -2,10 +2,12 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
+var buildConfiguration = builder.Configuration["BuildConfiguration"];
+var targetFramework = builder.Configuration["TargetFramework"];
 // Serve published (WebAssembly AOT compiled) app
-if (builder.Configuration["ServePublished"] == bool.TrueString)
+if (builder.Configuration["ServePublished"] == bool.TrueString && !string.IsNullOrWhiteSpace(buildConfiguration) && !string.IsNullOrWhiteSpace(targetFramework))
 {
-    var webRoot = Path.Combine(builder.Environment.ContentRootPath, "bin", builder.Configuration["BuildConfiguration"], builder.Configuration["TargetFramework"], "publish", "wwwroot");
+    var webRoot = Path.Combine(builder.Environment.ContentRootPath, "bin", buildConfiguration, targetFramework, "publish", "wwwroot");
     if (Directory.Exists(webRoot))
     {
         builder = WebApplication.CreateBuilder(new WebApplicationOptions { WebRootPath = webRoot, EnvironmentName = "Production" });
