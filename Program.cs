@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 var buildConfiguration = builder.Configuration["BuildConfiguration"];
 var targetFramework = builder.Configuration["TargetFramework"];
 // Serve published (WebAssembly AOT compiled) app
-if (builder.Configuration["ServePublished"] == bool.TrueString && !string.IsNullOrWhiteSpace(buildConfiguration) && !string.IsNullOrWhiteSpace(targetFramework))
+if (string.Equals(builder.Configuration["ServePublished"], bool.TrueString, StringComparison.Ordinal) && !string.IsNullOrWhiteSpace(buildConfiguration) && !string.IsNullOrWhiteSpace(targetFramework))
 {
     string bin, publish, wwwroot;
     var contentRoot = builder.Environment.ContentRootPath;
